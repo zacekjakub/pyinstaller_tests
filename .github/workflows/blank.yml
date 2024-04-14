@@ -1,13 +1,25 @@
+name: Package Application with Pyinstaller
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v2
+      name: Checkout code
 
-    - name: Prepare Environment
-      run: mkdir -p some_directory
-      working-directory: ./src
+    - name: Debug environment
+      run: |
+        echo "Listing current directory contents"
+        ls -alh
+        echo "Printing environment variables"
+        printenv
 
     - name: Package Application
       uses: JackMcKew/pyinstaller-action-windows@main
