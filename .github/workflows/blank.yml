@@ -1,24 +1,18 @@
-name: Package Application with Pyinstaller
-
-on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
-
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v2
 
+    - name: Prepare Environment
+      run: mkdir -p some_directory
+      working-directory: ./src
+
     - name: Package Application
       uses: JackMcKew/pyinstaller-action-windows@main
       with:
         path: src
-      working-directory: ./src
 
     - uses: actions/upload-artifact@v2
       with:
